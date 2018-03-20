@@ -9,6 +9,7 @@ var loggerutil = require('./utilities/logger');
 var datalogger = require('./utilities/datalogger');
 var fs = require('fs');
 var rfs = require('rotating-file-stream');
+var helmet = require('helmet');
 
 // Defining routes
 var routes = require('./routes');
@@ -56,6 +57,9 @@ app.use(logger(':remote-addr :remote-user :datetime :req[header] :method :url HT
 
 // uncomment to redirect global console object to log file
 // datalogger.logfile();
+
+// Helmet helps for securing Express apps by setting various HTTP headers
+app.use(helmet());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
