@@ -7,6 +7,7 @@
 var app = require('../app');
 var debug = require('debug')('node-express-project:server');
 var http = require('http');
+var ON_DEATH = require('death');
 
 /**
  * Get port from environment and store in Express.
@@ -88,5 +89,15 @@ function onListening() {
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
+
+/**
+ * Event listener for HTTP server "close" event.
+ * It sets the callback on SIGINT, SIGQUIT & SIGTERM.
+ */
+
+ ON_DEATH(function(signal, err) {
+   console.log('\b\bServer is going down now...');
+   server.close();
+ })
 
 console.log('Node-Express-Server Started on http://localhost:'+port+'\n');
