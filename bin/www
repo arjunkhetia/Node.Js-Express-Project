@@ -98,6 +98,7 @@ function onListening() {
  ON_DEATH(function(signal, err) {
    console.log('\b\bServer is going down now...');
    server.close();
+   process.exit();
  })
 
 console.log('Node-Express-Server Started on http://localhost:'+port+'\n');
