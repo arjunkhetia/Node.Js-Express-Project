@@ -44,7 +44,7 @@ app.use(require('express-status-monitor')({
   },
   healthChecks: [{
     protocol: 'http',
-    host: 'localhost'
+    host: 'localhost',
     path: '/users',
     port: '3000'
   }]

@@ -92,21 +92,26 @@ Express Status Monitor is simple, self-hosted module based on Socket.io and Char
 
 ```js
 app.use(require('express-status-monitor')({
-  title: 'Server Status',
-  path: '/status',
+  title: 'Server Status', // title for status screen
+  path: '/status', // path for server status invokation
   spans: [{
-    interval: 1,
-    retention: 60
+    interval: 1, // every second
+    retention: 60 // keep 60 datapoints in memory
   }],
   chartVisibility: {
-    cpu: true,
-    mem: true,
-    load: true,
-    responseTime: true,
-    rps: true,
-    statusCodes: true
+    cpu: true, // enable CPU Usage
+    mem: true, // enable Memory Usage
+    load: true, // enable One Minute Load Avg
+    responseTime: true, // enable Response Time
+    rps: true, // enable Requests per Second
+    statusCodes: true // enable Status Codes
   },
-  healthChecks: []
+  healthChecks: [{
+    protocol: 'http', // protocol
+    host: 'localhost' // server host name
+    path: '/users', // endpoint to check status
+    port: '3000' // server port
+  }] // health check will be considered successful if the endpoint returns a 200 status code
 }));
 ```
 
