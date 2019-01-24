@@ -86,6 +86,32 @@ var accessLogStream = rfs('file.log', {
 });
 ```
 
+# Server Status Monitor
+
+Express Status Monitor is simple, self-hosted module based on Socket.io and Chart.js to report realtime server metrics for Express-based ode servers.
+
+```js
+app.use(require('express-status-monitor')({
+  title: 'Server Status',
+  path: '/status',
+  spans: [{
+    interval: 1,
+    retention: 60
+  }],
+  chartVisibility: {
+    cpu: true,
+    mem: true,
+    load: true,
+    responseTime: true,
+    rps: true,
+    statusCodes: true
+  },
+  healthChecks: []
+}));
+```
+
+![Monitoring Page](http://i.imgur.com/AHizEWq.gif "Monitoring Page")
+
 [version-image]: https://img.shields.io/badge/Version-1.0.0-orange.svg
 [linuxbuild-image]: https://img.shields.io/badge/Linux-passing-brightgreen.svg
 [windowsbuild-image]: https://img.shields.io/badge/Windows-passing-brightgreen.svg
