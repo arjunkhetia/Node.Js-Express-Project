@@ -45,7 +45,7 @@ app.use(require('express-status-monitor')({
   healthChecks: [{
     protocol: 'http',
     host: 'localhost',
-    path: '/users',
+    path: '/',
     port: '3000'
   }]
 }));
@@ -148,8 +148,8 @@ process.on('unhandledRejection', (reason, promise) => {
 
 // globally catching unhandled exceptions
 process.on('uncaughtException', (error) => {
-   console.error('Uncaught Exception is thrown with ',error);
-   console.log('Server is still running...\n');
+   console.error('Uncaught Exception is thrown with ',error+'\n');
+   process.exit();
 });
 
 module.exports = app;
